@@ -1,5 +1,5 @@
 *~
 *.o
 .*
-./stransball2
+stransball2
 !/.gitignore

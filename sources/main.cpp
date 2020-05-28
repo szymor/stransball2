@@ -87,7 +87,7 @@ SDL_Surface* initializeSDL(int moreflags)
 {
 	SDL_Surface *screen;
 
-	int flags = SDL_HWSURFACE | SDL_TRIPLEBUF | SDL_HWPALETTE | moreflags;
+	int flags = SDL_HWSURFACE | SDL_HWPALETTE | moreflags;
 	//int flags = SDL_HWPALETTE|moreflags;
 	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO)<0) return 0;
 	atexit(SDL_Quit);
