@@ -3,6 +3,14 @@ CXX	:= /opt/gcw0-toolchain/usr/bin/mipsel-linux-g++
 STRIP	:= /opt/gcw0-toolchain/usr/bin/mipsel-linux-strip
 endif
 
+ifeq ($(PLATFORM), bittboy)
+CXX	:= arm-linux-g++
+STRIP	:= arm-linux-strip
+CXXFLAGS	:= -I../libSGE
+LDFLAGS		:= -L../libSGE
+LDLIBS	:= -ljpeg -lpng -lvorbisfile -lz -logg -lvorbis -logg
+endif
+
 CXX	?= g++
 STRIP	?= strip
 SYSROOT	:= $(shell $(CXX) --print-sysroot)
@@ -32,7 +40,7 @@ all: $(TARGET)
 
 # dynamically linked binary:
 $(TARGET): $(OBJS)
-	$(CXX) $^ -o $@ `$(SYSROOT)/usr/bin/sdl-config --libs` -lSDL_image -lSDL_mixer -lSDL_sound -lSDL_sound -lSGE
+	$(CXX) $(LDFLAGS) $^ -o $@ `$(SYSROOT)/usr/bin/sdl-config --libs` -lSDL_image -lSDL_mixer -lSDL_sound -lSDL -lSGE $(LDLIBS)
 ifndef DEBUG
 	$(STRIP) $(TARGET)
 endif

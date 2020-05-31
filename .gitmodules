@@ -1,0 +1,3 @@
+[submodule "libSGE"]
+	path = libSGE
+	url = https://github.com/szymor/libSGE.git
